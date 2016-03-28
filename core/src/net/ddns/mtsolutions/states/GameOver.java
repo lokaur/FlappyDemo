@@ -6,23 +6,21 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import net.ddns.mtsolutions.FlappyDemo;
 
-public class MenuState extends State {
-
+public class GameOver extends State {
 	private Texture background;
-	private Texture playButton;
+	private Texture gameover;
 
-	public MenuState(GameStateManager gsm) {
+	public GameOver(GameStateManager gsm) {
 		super(gsm);
 		camera.setToOrtho(false, FlappyDemo.WIDTH / 2, FlappyDemo.HEIGHT / 2);
 		background = new Texture("bg.png");
-		playButton = new Texture("playbtn.png");
+		gameover = new Texture("gameover.png");
 	}
 
 	@Override
 	protected void handleInput() {
-		if (Gdx.input.justTouched()) {
+		if (Gdx.input.justTouched())
 			gsm.set(new PlayState(gsm));
-		}
 	}
 
 	@Override
@@ -35,13 +33,13 @@ public class MenuState extends State {
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
 		sb.draw(background, 0, 0);
-		sb.draw(playButton, camera.position.x - playButton.getWidth() / 2, camera.position.y);
+		sb.draw(gameover, camera.position.x - gameover.getWidth() / 2, camera.position.y);
 		sb.end();
 	}
 
 	@Override
 	public void dispose() {
 		background.dispose();
-		playButton.dispose();
+		gameover.dispose();
 	}
 }
